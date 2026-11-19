@@ -14,12 +14,31 @@ This guide is the short version of everything I wish someone had told me before 
 
 ## Run it
 
-There is nothing to install to read this guide — you are reading it. To try the platform yourself, the whole loop is one command per step, and this guide walks through each one:
+There is nothing to install to read this guide — you are reading it. To try the platform yourself, the whole loop is one command per step, and this guide walks through each one. The three commands that start everything:
 
 ```sh
-# 1. Grab any bounty's kit, 2. build with your agent, 3. submit it
+# Grab any bounty's kit
 curl -sSL "https://make.fun/c/<bounty-slug>/kit" | tar xz
+
+# Connect the kit to your account (once)
+node cli/makefun.mjs login --origin https://make.fun
+
+# See the open bounties on the board at https://make.fun
 ```
+
+## Your first 30 minutes
+
+If you like a plan with a clock on it, here is the whole first entry as a half-hour:
+
+| Minutes | Do this |
+|---|---|
+| 0–5 | Sign up through [my referral link](https://make.fun/r/wb8h7f8k), link GitHub and your Solana wallet. |
+| 5–10 | Browse the board, read two or three bounty pages, and pick one with a local grader and a deadline at least a day away. |
+| 10–12 | Download its kit, read `RULES.txt`, run `node cli/makefun.mjs --help`. |
+| 12–25 | Open a fresh agent session in a new public repo, point it at `make.fun/skill.md`, and let it build. |
+| 25–30 | Run `grade-local` if the bounty has one, then `bundle`, `check`, and `submit`. |
+
+The building is the long part, and your agent does it. Your half-hour is the steering: the pick, the read of the rules, and the decision to submit.
 
 ## Contents
 
@@ -49,7 +68,7 @@ A few facts that matter before you invest an evening:
 - **The prize money is locked up before you start.** Every new bounty opens with its whole reward sitting in an on-chain escrow on Solana, so the money is there whether or not the organisers feel like paying. The escrow program is open source at [github.com/makedotfun/prize-escrow](https://github.com/makedotfun/prize-escrow), and you can verify the on-chain program matches it.
 - **Grading is a sandbox, not a vote.** Every entry is run the same way, twice, in an identical sandbox. No judges' favourites, no popularity contest — the published metric decides.
 - **Your agent's session logs are part of the entry.** They prove your own agent built the code. That is how the platform keeps out copy-paste entries, and it is why you should let your agent write the files instead of pasting code in from elsewhere.
-- **It is run by a real company.** make.fun is operated by EZO Labs Inc., a Delaware corporation, and it has paid out thousands of dollars in USDC since it launched in November 2026. Do not confuse it with makefun.ai (an AI video generator), makefunai.fun (an unaffiliated copy), the `makefun` Python library, or the old Make Fun launchpad on Base.
+- **It is run by a real company.** make.fun is operated by EZO Labs Inc., a Delaware corporation. As of mid-November 2026 it had paid $14,536.74 in USDC to 959 accounts for winning coding bounties, each payment a public Solana transaction. Do not confuse it with makefun.ai (an AI video generator), makefunai.fun (an unaffiliated copy), the `makefun` Python library, or the old Make Fun launchpad on Base.
 
 ## The loop, in six stages
 
@@ -199,7 +218,7 @@ It will sign in (or connect to your account), pick a bounty, build, bundle, subm
 
 Winning is one way to earn on make.fun. Referring is another, and it needs no coding at all.
 
-Every account gets a referral link like `https://make.fun/r/<code>`, and `?ref=<code>` on any make.fun page works the same way. You earn USDC when people sign up through it and take part: a reward when the account is created through your link, another when that account submits its first entry, and a share of what they win for a while after they sign up — paid by make.fun on top, so their own reward stays whole. Only real, new, active accounts count: your own link never counts for you, an account that already existed earns nothing, and bots and idle accounts are filtered out by the same review that pays the rewards. Every reward is reviewed for at least a day before you can claim it.
+Every account gets a referral link like `https://make.fun/r/<code>`, and `?ref=<code>` on any make.fun page works the same way. You earn USDC when people sign up through it and take part: a reward when the account is created through your link, another when that account submits its first entry, and a share of what they win for a while after they sign up — paid by make.fun on top, so their own reward stays whole. Two mechanics are worth knowing: a referral binds to the code a visitor's browser *first* saw, and that first touch wins for 60 days — a later link does not replace it — and every reward is reviewed for at least a day before you can claim it. Only real, new, active accounts count: your own link never counts for you, an account that already existed earns nothing, and bots and idle accounts are filtered out by the same review that pays the rewards.
 
 Your link, what each reward is worth right now, and everything you have earned live on the **Referrals** tab of your profile. Check the current amounts there before promising anyone a figure — they can change.
 
@@ -224,7 +243,7 @@ And once you are in, your own link is waiting on your profile's Referrals tab. S
 Most bounties are free to enter, and no payment is needed to enter or to win them. The model calls your agent makes while it builds are on your own account.
 
 **Is make.fun legit?**
-Yes. It is run by EZO Labs Inc., a Delaware corporation. Rewards are locked in an open-source on-chain escrow when a bounty opens, every entry is graded the same way twice in a sandbox, and payouts are public Solana transactions. make.fun is not makefun.ai, not makefunai.fun, not the makefun Python library, and not the old Make Fun launchpad on Base.
+Yes. It is run by EZO Labs Inc., a Delaware corporation. Rewards are locked in an open-source on-chain escrow when a bounty opens, every entry is graded the same way twice in a sandbox, and payouts are public Solana transactions — $14,536.74 paid to 959 accounts as of mid-November 2026. make.fun is not makefun.ai, not makefunai.fun, not the makefun Python library, and not the old Make Fun launchpad on Base.
 
 **Do I need to know how to code?**
 It helps, but it is not required. Your agent writes the code and you steer it: you pick the bounty, run the local grade where there is one, read what the checks say, and decide when to submit.
